@@ -1,13 +1,16 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.ricardovz</groupId>
-  <artifactId>websitte</artifactId>
+  <artifactId>website</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
   <name>RicardoVZ.com</name>
   <description>Ricardo Villanueva´s dynamic website</description>
+  
   <build>
+  
     <sourceDirectory>src</sourceDirectory>
+    
     <resources>
       <resource>
         <directory>src</directory>
@@ -16,7 +19,9 @@
         </excludes>
       </resource>
     </resources>
+    
     <plugins>
+    
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.1</version>
@@ -25,6 +30,7 @@
           <target>1.6</target>
         </configuration>
       </plugin>
+      
       <plugin>
         <artifactId>maven-war-plugin</artifactId>
         <version>2.3</version>
@@ -33,6 +39,22 @@
           <failOnMissingWebXml>false</failOnMissingWebXml>
         </configuration>
       </plugin>
+      
     </plugins>
+    
   </build>
+  
+  <properties>
+<!--     <spring.version>4.0.6.RELEASE</spring.version> -->
+    <spring.version>3.2.4.RELEASE</spring.version>
+</properties>
+
+  <dependencies>
+  	<dependency>
+  		<groupId>org.springframework</groupId>
+  		<artifactId>spring-webmvc</artifactId>
+  		<version>${spring.version}</version>
+  	</dependency>
+  </dependencies>
+  
 </project>
