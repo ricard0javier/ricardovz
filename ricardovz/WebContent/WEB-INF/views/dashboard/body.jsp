@@ -47,7 +47,3 @@ Phone: +12 34 56 78
 <footer>
 	<span>Copyright &copy; RicardoVZ.com</span>		
 </footer>
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>		
-<script src="resources/js/dashboard.js"></script>
-<script src="resources/js/modules/geo.js"></script>

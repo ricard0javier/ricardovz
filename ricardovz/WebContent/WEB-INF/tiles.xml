@@ -9,11 +9,17 @@
         <put-attribute name="body" value="" />
         <put-attribute name="post-body" value="" />
     </definition>
-    	
-    <definition name="tiles-*" extends="default">
-	    <put-attribute name="post-head" value="/WEB-INF/views/{1}/post-head.jsp" />
-	    <put-attribute name="body" value="/WEB-INF/views/{1}/body.jsp" />
-	    <put-attribute name="post-body" value="/WEB-INF/views/{1}/post-body.jsp" />
+    
+    <definition name="REGEXP:([^/].*)" extends="default">
+	   
+		<put-attribute name="post-head" value="/WEB-INF/views/{options[myopts]}/post-head.jsp" />
+	    <put-attribute name="body" value="/WEB-INF/views/{options[myopts]}/body.jsp" />
+	    <put-attribute name="post-body" value="/WEB-INF/views/{options[myopts]}/post-body.jsp" />
+	
+		<put-list-attribute name="myopts" cascade="true">
+	        <add-attribute value="{1}"/>
+	        <add-attribute value="common"/>
+	    </put-list-attribute>
 	</definition>
   
 </tiles-definitions>

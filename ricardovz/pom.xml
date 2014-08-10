@@ -46,7 +46,7 @@
 
 	<properties>
 		<spring.version>3.2.4.RELEASE</spring.version>
-		<tiles.version>3.0.1</tiles.version>
+		<tiles.version>3.0.3</tiles.version>
 		<slf4j-log4j12.version>1.5.2</slf4j-log4j12.version>
 	</properties>
 
@@ -57,6 +57,12 @@
   		<groupId>org.springframework</groupId>
   		<artifactId>spring-webmvc</artifactId>
   		<version>${spring.version}</version>
+  		<exclusions>
+  			<exclusion>
+  				<artifactId>commons-logging</artifactId>
+  				<groupId>commons-logging</groupId>
+  			</exclusion>
+  		</exclusions>
   	</dependency>
   	
 	<!-- tiles -->
@@ -76,6 +82,7 @@
 		<artifactId>jstl</artifactId>
 		<version>1.2</version>
 	</dependency>
+	
   </dependencies>
 	
 </project>
