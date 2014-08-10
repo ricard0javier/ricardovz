@@ -8,14 +8,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class MainController {
 
-	@RequestMapping(value = "/{page}.{extension:html}", method = RequestMethod.GET)
-	public String getHtml(@PathVariable String page, @PathVariable String extension) {
-		return "resources/" + page + "." + extension;
-	}
-	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String welcome() {
-		return "resources/index.html";
+		return "redirect:/home";
+	}
+	
+	@RequestMapping(value = "/{page}", method = RequestMethod.GET)
+	public String any(@PathVariable String page) {
+		System.out.println(page);
+		return "redirect:/";
 	}
 
 }

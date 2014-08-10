@@ -43,18 +43,39 @@
     </plugins>
     
   </build>
-  
-  <properties>
-<!--     <spring.version>4.0.6.RELEASE</spring.version> -->
-    <spring.version>3.2.4.RELEASE</spring.version>
-</properties>
+
+	<properties>
+		<spring.version>3.2.4.RELEASE</spring.version>
+		<tiles.version>3.0.1</tiles.version>
+		<slf4j-log4j12.version>1.5.2</slf4j-log4j12.version>
+	</properties>
+
 
   <dependencies>
+  	<!-- spring -->
   	<dependency>
   		<groupId>org.springframework</groupId>
   		<artifactId>spring-webmvc</artifactId>
   		<version>${spring.version}</version>
   	</dependency>
+  	
+	<!-- tiles -->
+	<dependency>
+		<groupId>org.apache.tiles</groupId>
+		<artifactId>tiles-extras</artifactId>
+		<version>${tiles.version}</version>
+	</dependency>
+	<dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-log4j12</artifactId>
+        <version>${slf4j-log4j12.version}</version>
+    </dependency>
+
+	<dependency>
+		<groupId>javax.servlet</groupId>
+		<artifactId>jstl</artifactId>
+		<version>1.2</version>
+	</dependency>
   </dependencies>
-  
+	
 </project>
