@@ -1,5 +1,7 @@
 package com.ricardovz.website;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -7,15 +9,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class MainController {
+	static final Logger logger = LoggerFactory.getLogger(MainController.class);
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String welcome() {
+		logger.info("we have a guest! in the context /");
 		return "redirect:/home";
 	}
 	
 	@RequestMapping(value = "/{page}", method = RequestMethod.GET)
 	public String any(@PathVariable String page) {
-		System.out.println(page);
+		logger.info("oh oh, some one is trying to get in a path no defined: /{}", page);
 		return "redirect:/";
 	}
 

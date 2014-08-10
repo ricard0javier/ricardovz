@@ -11,14 +11,18 @@ import org.apache.tiles.factory.BasicTilesContainerFactory;
 import org.apache.tiles.request.ApplicationContext;
 import org.apache.tiles.request.render.BasicRendererFactory;
 import org.apache.tiles.request.render.Renderer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TilesContainerFactory extends BasicTilesContainerFactory {
+	static final Logger logger = LoggerFactory.getLogger(TilesContainerFactory.class);
 
 	@Override
 	protected Renderer createTemplateAttributeRenderer(
 			BasicRendererFactory rendererFactory,
 			ApplicationContext applicationContext, TilesContainer container,
 			AttributeEvaluatorFactory attributeEvaluatorFactory) {
+	    logger.info("Setting Tiles renderer");
 		Renderer renderer =  super.createTemplateAttributeRenderer(rendererFactory,
 				applicationContext, container, attributeEvaluatorFactory);
 		OptionsRenderer optionsRenderer = new OptionsRenderer(applicationContext, renderer);
@@ -27,6 +31,7 @@ public class TilesContainerFactory extends BasicTilesContainerFactory {
 	
 	@Override
 	protected <T> PatternDefinitionResolver<T> createPatternDefinitionResolver(Class<T> cls) {
+	    logger.info("Setting Tiles pattern config");
 	    PrefixedPatternDefinitionResolver<T> r = new PrefixedPatternDefinitionResolver<T>();
 	    r.registerDefinitionPatternMatcherFactory("WILDCARD", new WildcardDefinitionPatternMatcherFactory());
 	    r.registerDefinitionPatternMatcherFactory("REGEXP", new RegexpDefinitionPatternMatcherFactory());
