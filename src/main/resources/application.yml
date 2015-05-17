@@ -1,0 +1,5 @@
+multipart.maxFileSize: 12800KB
+multipart.maxRequestSize: 12800KB
+
+logging.level.: INFO
+logging.level.com.ricardovz: TRACE

@@ -1,0 +1,46 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.3.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+apply plugin: 'application'
+
+jar {
+    baseName = 'ricardovz-receipts'
+    version =  '0.1.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-data-mongodb")
+    compile("org.hibernate:hibernate-validator")
+    compile("org.projectlombok:lombok:1.16.2")
+    compile("com.fasterxml.jackson.core:jackson-databind")
+    compile("joda-time:joda-time")
+    compile("com.google.guava:guava:18.0")
+    testCompile("junit:junit")
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'com.ricardovz.api.Application'
+    }
+}
