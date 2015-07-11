@@ -10,7 +10,7 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
  */
 @Slf4j
 @SpringBootApplication
-@EnableMongoRepositories("com.ricardovz.api.persistence")
+@EnableMongoRepositories()
 public class Application {
 
     /**
