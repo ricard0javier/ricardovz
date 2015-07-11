@@ -1,5 +1,23 @@
-multipart.maxFileSize: 12800KB
-multipart.maxRequestSize: 12800KB
+multipart:
+    maxFileSize: 12800KB
+    maxRequestSize: 12800KB
 
-logging.level.: INFO
-logging.level.com.ricardovz: TRACE
+spring:
+    mail:
+        host: smtp.gmail.com
+        port: 465
+        username: villanueva.ricardo@gmail.com
+        password: password
+        properties:
+            mail.smtp.port: 465
+            mail.smtp.socketFactory.port: 465
+            mail.smtps.host: smtp.gmail.com
+            mail.smtps.auth: true
+            mail.smtps.quitwait: true
+            mail.smtp.socketFactory.class: javax.net.ssl.SSLSocketFactory
+            mail.smtp.socketFactory.fallback: false
+
+logging:
+    level.: INFO
+    level.com.ricardovz: TRACE
+
