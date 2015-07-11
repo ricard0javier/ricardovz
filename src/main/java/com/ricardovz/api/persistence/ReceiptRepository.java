@@ -1,7 +1,6 @@
 package com.ricardovz.api.persistence;
 
 import com.ricardovz.api.vo.ReceiptVO;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.List;
