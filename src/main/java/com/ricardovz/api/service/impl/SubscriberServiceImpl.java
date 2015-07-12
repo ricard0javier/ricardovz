@@ -49,7 +49,7 @@ public class SubscriberServiceImpl implements PersistenceService<Subscriber> {
             return null;
         }
 
-        if(subscriberRepository.findByEmail(subscriber.getEmail()) == null) {
+        if(subscriberRepository.findByEmail(subscriber.getEmail()) != null) {
             return null;
         }
 

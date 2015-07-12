@@ -1,7 +1,9 @@
 package com.ricardovz.api.model;
 
+import com.google.common.base.Charsets;
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
+import com.google.common.io.CharStreams;
 import com.ricardovz.api.dto.InformationMessageDTO;
 import com.ricardovz.api.util.SpelParser;
 import com.ricardovz.api.util.VzMailSender;
@@ -11,7 +13,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.ClassPathResource;
 
 import javax.mail.MessagingException;
-import java.nio.file.Paths;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Calendar;
 import java.util.List;
 
@@ -75,10 +78,25 @@ public class Subscriber {
         informationMessage.setUnsubscribeUrl("http://www.ricardovz.com/unsubscribe");
         informationMessage.setUrl("http://www.ricardovz.com");
 
+        String template;
+        ClassPathResource classPathResource = new ClassPathResource("mail-templates/information.html");
+        try {
 
-        String path = new ClassPathResource("mail-templates/information.html").getPath();
+            InputStreamReader inputStreamReader = new InputStreamReader(classPathResource.getInputStream(), Charsets.UTF_8);
+            template = CharStreams.toString(inputStreamReader);
+
+        } catch (IOException e) {
+            log.warn("Error reading the mail template for new subscribers: template file = '{}'", classPathResource.getPath(), e);
+            return false;
+        }
+
+
         SpelParser spelParser = new SpelParser();
-        String message = spelParser.parse(Paths.get(path), informationMessage);
+        String message = spelParser.parse(template, informationMessage);
+
+        if (message == null) {
+            return false;
+        }
 
         // send email
         List<String> bcc = Lists.newArrayList(email);

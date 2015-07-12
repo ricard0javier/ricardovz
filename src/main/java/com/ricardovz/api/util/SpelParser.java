@@ -50,28 +50,4 @@ public class SpelParser {
 
         return message;
     }
-
-    /**
-     * Parses a message template based on the provided context
-     * @param messageTemplatePath message templete containing zero or more placeholder, for instance, #{something}
-     * @param context context to be used in the parsing process
-     * @return message parsed
-     */
-    public String parse(Path messageTemplatePath, Object context) {
-
-        List<String> allLines;
-
-        try {
-
-            allLines = Files.readAllLines(messageTemplatePath);
-
-        } catch (IOException e) {
-            log.warn("Provided path is not valid: '{}'", messageTemplatePath, e);
-            return null;
-        }
-
-        String messageTemplate = Joiner.on(" ").join(allLines);
-
-        return parse(messageTemplate, context);
-    }
 }
