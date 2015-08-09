@@ -1,28 +1,36 @@
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.3.RELEASE")
-    }
-}
-
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'spring-boot'
 apply plugin: 'application'
 
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
 jar {
-    baseName = 'ricardovz-receipts'
+    baseName = 'ricardovz-api'
     version =  '0.1.0'
+    manifest {
+        attributes 'Main-Class': 'com.ricardovz.api.Application'
+    }
 }
 
 repositories {
     mavenCentral()
 }
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+buildscript {
+
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.3.RELEASE")
+        classpath("com.monochromeroad.gradle-plugins:gradle-aws-s3-sync:0.8")
+    }
+
+}
 
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
@@ -37,12 +45,21 @@ dependencies {
     testCompile("junit:junit")
 }
 
-task wrapper(type: Wrapper) {
-    gradleVersion = '2.3'
+
+import com.monochromeroad.gradle.plugin.aws.s3.S3Sync
+task deploy(type: S3Sync){
+    description = "Deploys jar on a s3 bucket."
+
+    accessKey AWS_ACCESS_KEY_ID
+    secretKey AWS_SECRET_ACCESS_KEY
+
+    configFile "synchronize.properties"
+    acl com.monochromeroad.gradle.plugin.aws.s3.ACL.PublicRead
+
+    from(buildDir.absolutePath + "/install/" + project.name)
+    into("ricardovz.com/backend/" + project.name)
 }
 
-jar {
-    manifest {
-        attributes 'Main-Class': 'com.ricardovz.api.Application'
-    }
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
 }
